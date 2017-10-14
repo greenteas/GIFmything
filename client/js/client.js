@@ -7,5 +7,5 @@ function onMessage(text) {
 	list.appendChild(el);
 }
 
-onMessage('Hi');
-onMessage('I am connected');
+// onMessage('Hi');
+// onMessage('I am connected');
