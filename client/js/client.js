@@ -83,11 +83,14 @@ $(document).ready(function(){
 			console.log(response.data);
 			response.data.forEach(function(element){
 				let results = document.getElementById('results');
+				let hints = document.getElementById('hints');
 				let giphyURL = element.images.fixed_height.url;
 				let gif = document.createElement('img');
 				gif.setAttribute('src', giphyURL);
 				gif.setAttribute('class', 'gifResults');
-				$('.gifResults').selectable();
+				gif.addEventListener('click',function() {
+					hints.appendChild(gif);
+				},false)
 				results.appendChild(gif);
 			});
 		});
