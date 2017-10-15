@@ -1,5 +1,4 @@
 var sock = io();
-sock.on('msg', onMessage);
 sock.on('timer', changeTime);
 var username = document.getElementById('username').innerHTML;
 
@@ -33,13 +32,6 @@ form.addEventListener('submit', function(e) {
     sock.emit('msg', value);
     e.preventDefault();
 });
-
-function addTurnListener(id) {
-    var button = document.getElementById(id);
-    button.addEventListener('click', function() {
-        sock.emit('turn', id);
-    });
-}
 
 function changeTime(text){
 	let c = document.getElementById("time");
