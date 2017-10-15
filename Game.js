@@ -6,7 +6,7 @@ let fs = require('fs');
 class Game {
     constructor(sock1, sock2, playerData) {
         this._players = [sock1, sock2];
-
+        this._playerData = playerData;
         this._initSockets();
         this._countdown = 60;
         this._gameEnd = false;
@@ -89,6 +89,9 @@ class Game {
 
             if (isEndGame) {
                 self._gameEnd = true;
+                self._playerData["score"] += 1;
+                sock.emit("globalPlayers", self._playerData);
+                console.log("winner!!");
             }
         }
     }
