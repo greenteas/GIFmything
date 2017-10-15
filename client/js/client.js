@@ -45,7 +45,7 @@ function onMessage(text) {
     chat.scrollTop = chat.scrollHeight;
     console.log(text);
 
-    // sock.emit('guess');
+    sock.emit('guess', text);
 }
 
 // posts messages from the system in the chat

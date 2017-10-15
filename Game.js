@@ -20,9 +20,15 @@ class Game {
         var phraseList = phrase.split(" ");
         var phraseBlanks = this._getBlanks(phrase);
 
+        self._players.forEach((sock) => {
+           self. _addTurnEvent(sock, phrase,self);
+        });
+        
         var counting = setInterval(function() {  
-            if (self._countdown > 0) { 
-            self._countdown--;}
+            if (self._countdown > 0 && self._gameEnd == false) { 
+            self._countdown--;
+            }
+
 
             console.log(self._countdown);
         
@@ -49,7 +55,18 @@ class Game {
 
     }
 
-    _turn(playerIndex) {
+    _addTurnEvent(sock,phrase,self) {
+        sock.on('guess', checkGuess);
+
+        function checkGuess(data){
+            // var guessList = data.value.split(" ");
+            if (data.value.valueOf() == phrase.valueOf()){
+                console.log("winner!!");
+                self._gameEnd = true;
+
+            }
+
+        }
 
     }
 
