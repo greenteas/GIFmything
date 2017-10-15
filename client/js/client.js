@@ -52,6 +52,7 @@ function addTurnListener(id) {
 
 // When page loads, call jQuery functions
 $(document).ready(function(){
+	$('.gif-space').droppable();
 	$('#submit').on('click', function(){
 		$('#results').empty();
 		var userInput = $('#search-input').val().trim();
@@ -69,8 +70,9 @@ $(document).ready(function(){
 				let gif = document.createElement('img');
 				gif.setAttribute('src', giphyURL);
 				gif.setAttribute('class', 'gifResults');
-				$('.gifResults').draggable();
 				results.appendChild(gif);
+				$('.gifResults').draggable();
+				
 			});
 		});
 	});
