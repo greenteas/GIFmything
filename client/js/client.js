@@ -3,7 +3,15 @@ const BASE_URL = "http://api.giphy.com/v1/gifs/search?";
 const LIMIT = 15;
 const APIKEY = "dc6zaTOxFJmzC";
 sock.on('timer', changeTime);
-var username = document.getElementById('username').innerHTML;
+var username;
+
+$("#name-button").click(function(e) {
+	e.preventDefault();
+	username = $("#input-name").val();
+	$("#username").text(username);
+	$("#lobby").hide("fast");
+	$("#main-window").show(1000);
+});
 
 sock.on('msg', onMessage);
 function onMessage(text) {
