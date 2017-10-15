@@ -67,12 +67,13 @@ $(document).ready(function(){
 	$('#submit').on('click', function(){
 		$('#results').empty();
 		var userInput = $('#search-input').val().trim();
+		if (userInput) {
+			$('#showResultsText').text("Showing results for ");
+			$('#searchText').text(userInput);
+		}
 		$('#search-input').val(null);
-		// replace spaces with + signs
 		var query = userInput.replace(/ /g, "+");
-		// form the url
 		var queryURL = BASE_URL+'&q='+query+'&limit='+LIMIT+'&api_key='+APIKEY;
-		// make api call and get response
 		$.ajax({url: queryURL, method: 'GET'}).done(function(response){
 			console.log(response.data);
 			response.data.forEach(function(element){

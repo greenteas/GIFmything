@@ -17,7 +17,6 @@
 	height: 60%;
 }
 
-=======
 #main-window {
 	display: none;
 }
@@ -29,4 +28,13 @@
 .scrolling-wrapper .gifResults {
 	margin-top:10px;
     margin-right:10px;
+}
+
+#showResultsText{
+	font-style: italic;
+}
+
+#searchText {
+	font-style: italic;
+	font-weight: bold;
 }
