@@ -1,5 +1,8 @@
 var sock = io();
 sock.on('msg', onMessage);
+const BASE_URL = "http://api.giphy.com/v1/gifs/search?";
+const LIMIT = 15;
+const APIKEY = "dc6zaTOxFJmzC";
 
 function onMessage(text) {
 	var list = document.getElementById('chat-space');
@@ -18,6 +21,12 @@ form.addEventListener('submit', function(e) {
     e.preventDefault();
 });
 
+var searchForm = document.getElementById('search-form');
+// When you submit the form, perform following function
+searchForm.addEventListener('submit',function(e) {
+	e.preventDefault();
+});
+
 function addTurnListener(id) {
     var button = document.getElementById(id);
     button.addEventListener('click', function() {
@@ -25,6 +34,28 @@ function addTurnListener(id) {
     });
 }
 
-$(function() {
-    $("#phrase").draggable({containment: "#tile"});
+// When page loads, call jQuery functions
+$(document).ready(function(){
+	$('#submit').on('click', function(){
+		$('#results').empty();
+		var userInput = $('#search-input').val().trim();
+		$('#search-input').val(null);
+		// replace spaces with + signs
+		var query = userInput.replace(/ /g, "+");
+		// form the url
+		var queryURL = BASE_URL+'&q='+query+'&limit='+LIMIT+'&api_key='+APIKEY;
+		// make api call and get response
+		$.ajax({url: queryURL, method: 'GET'}).done(function(response){
+			console.log(response.data);
+			response.data.forEach(function(element){
+				let results = document.getElementById('results');
+				let giphyURL = element.images.fixed_height.url;
+				let gif = document.createElement('img');
+				gif.setAttribute('src', giphyURL);
+				gif.setAttribute('class', 'gifResults');
+				$('.gifResults').draggable();
+				results.appendChild(gif);
+			});
+		});
+	});
 });

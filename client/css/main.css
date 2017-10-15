@@ -12,3 +12,7 @@
 	width: 150px;
 	cursor: move;
 }
+
+#results img {
+	float:left;
+}
