@@ -12,3 +12,12 @@
 	width: 150px;
 	cursor: move;
 }
+
+.scrolling-wrapper {
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+.scrolling-wrapper .gifResults {
+	margin-top:10px;
+    margin-right:10px;
+}

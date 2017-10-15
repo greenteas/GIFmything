@@ -1,4 +1,5 @@
 var sock = io();
+sock.on('msg', onMessage);
 const BASE_URL = "http://api.giphy.com/v1/gifs/search?";
 const LIMIT = 15;
 const APIKEY = "dc6zaTOxFJmzC";
@@ -69,9 +70,8 @@ $(document).ready(function(){
 				let gif = document.createElement('img');
 				gif.setAttribute('src', giphyURL);
 				gif.setAttribute('class', 'gifResults');
-				results.appendChild(gif);
 				$('.gifResults').draggable();
-				
+				results.appendChild(gif);
 			});
 		});
 	});
@@ -81,3 +81,4 @@ function changeTime(text){
 	let c = document.getElementById("time");
 	c.innerHTML = text;
 }
+
