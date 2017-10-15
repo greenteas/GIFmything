@@ -6,3 +6,10 @@
 	height: 80%;
 	overflow-y: auto;
 }
+
+.gif {
+	height: 100px;
+	width: 150px;
+	cursor: move;
+}
+
