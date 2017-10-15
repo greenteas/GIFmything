@@ -1,0 +1,25 @@
+{
+  "name": "gifmything",
+  "version": "1.0.0",
+  "description": "Guess the phrases using only GIFs.",
+  "main": "Game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greenteas/GIFmything.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/greenteas/GIFmything/issues"
+  },
+  "homepage": "https://github.com/greenteas/GIFmything#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "giphy": "0.0.4",
+    "socket.io": "^2.0.3"
+  }
+}
