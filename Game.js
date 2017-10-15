@@ -4,7 +4,7 @@ let fs = require('fs');
 // console.log(phrases);
 
 class Game {
-    constructor(sock1, sock2) {
+    constructor(sock1, sock2, playerData) {
         this._players = [sock1, sock2];
 
         this._initSockets();
@@ -45,12 +45,12 @@ class Game {
             }
         });
 
-        sock.on('msg', this._checkWords);
+        // sock.on('msg', this._checkWords);
     }
 
-    _checkWords(words){
-        //might have to split the words if it's an entire phrase.
-    }
+    // _checkWords(words){
+    //     //might have to split the words if it's an entire phrase.
+    // }
 
     _turn(playerIndex) {
 

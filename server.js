@@ -11,7 +11,7 @@ let server = http.createServer(app);
 let io = socketio(server);
 
 let waitingPlayer;
-
+let playerData = [];
 
 // sock --> sending between client/server
 io.on('connection', onConnection);
@@ -23,9 +23,14 @@ function onConnection(sock) {
     sock.emit('sysNotif', 'Hello! Get ready for a round of GIF My Thing!');
 
     // whenever the client sends a message, send txt to all clients
+    sock.on('playerUpdate', function(data) {
+    	playerData.push(data);
+    	console.log(playerData);
+    });
+
     sock.on('msg', (txt) => io.emit('msg', txt));
     if (waitingPlayer) {
-        new Game(waitingPlayer, sock);
+        new Game(waitingPlayer, sock, playerData);
         waitingPlayer = null;
     }
     else {

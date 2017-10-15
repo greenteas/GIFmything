@@ -8,11 +8,28 @@ var username;
 
 $("#name-button").click(function(e) {
 	e.preventDefault();
+	// username = $("#input-name").val();
+	// $("#username").text(username);
+	var temp = {};
 	username = $("#input-name").val();
-	$("#username").text(username);
+   	temp["name"] = username;
+   	temp["score"] = 0;
+	sock.emit('playerUpdate', temp);
 	$("#lobby").hide("fast");
 	$("#main-window").show(1000);
+
 });
+
+//post scoreboard and list of users
+sock.on('playerUpdate', onPlayerUpdate);
+function onPlayerUpdate(data) {
+	var chat = document.getElementById('players');
+	var el = document.createElement('p');
+    el.className = "user";
+	el.innerHTML = data.name + ': ' + data.score;
+	chat.appendChild(el);
+    console.log(data);
+}
 
 // posts messages from users in the chat 
 sock.on('msg', onMessage);
@@ -20,7 +37,7 @@ function onMessage(text) {
 	var chat = document.getElementById('chat-space');
 	var el = document.createElement('p');
     el.className = "user-message";
-	el.innerHTML = username + ': ' + text;
+	el.innerHTML = text.name + ': ' + text.value;
 	chat.appendChild(el);
     chat.scrollTop = chat.scrollHeight;
     console.log(text);
@@ -50,7 +67,10 @@ form.addEventListener('submit', function(e) {
     var input = document.getElementById('chat-input');
     var value = input.value;
     input.value = '';
-    sock.emit('msg', value);
+    var temp = {};
+    temp["name"] = username;
+    temp["value"] = value;
+    sock.emit('msg', temp);
     e.preventDefault();
 });
 
