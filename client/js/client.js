@@ -1,5 +1,6 @@
 var sock = io();
 sock.on('msg', onMessage);
+sock.on('timer', changeTime);
 
 function onMessage(text) {
 	var list = document.getElementById('chat-space');
@@ -25,3 +26,7 @@ function addTurnListener(id) {
     });
 }
 
+function changeTime(text){
+	let c = document.getElementById("time");
+	c.innerHTML = text;
+}

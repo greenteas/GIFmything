@@ -19,15 +19,20 @@
                         </div>
                         <div class='chat-box tile is-child notification is-warning'>
                             <div id="chat-space"></div>
-                            <form id="chat-form">
-                                <input type="text" id="chat-input">
-                                <button>Send</button>
+                            <form id="chat-form" class="field has-addons">
+                                <div class="control">
+                                    <input type="text" id="chat-input" class="input" placeholder="Type a guess or message!">
+                                </div>
+                                <div class="control">
+                                    <button class="button">Send</button>
+                                </div>
                             </form>
                         </div>
                     </div>
                     <div class = "tile is-parent is-vertical">
                         <div class="phrase title notification is-child">
                             <p class="title"> GUESS THIS PHRASE!</p>
+                            <p id="time"></p>
                         </div>
                         <div class="gif-space tile notification is-child">
                             <p>fsdfdsfds</p>
