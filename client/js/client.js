@@ -9,9 +9,6 @@ function onMessage(text) {
     list.scrollTop = list.scrollHeight;
 }
 
-// onMessage('Hi');
-// onMessage('I am connected');
-
 var form = document.getElementById('chat-form');
 form.addEventListener('submit', function(e) {
     var input = document.getElementById('chat-input');
@@ -28,7 +25,6 @@ function addTurnListener(id) {
     });
 }
 
-// ['rock', 'paper', 'scissors'].forEach(addTurnListener);
 $(function() {
     $("#phrase").draggable({containment: "#tile"});
 });
