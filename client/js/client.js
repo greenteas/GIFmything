@@ -14,21 +14,24 @@ $("#name-button").click(function(e) {
 	username = $("#input-name").val();
    	temp["name"] = username;
    	temp["score"] = 0;
-	sock.emit('playerUpdate', temp);
-	$("#lobby").hide("fast");
+   	$("#lobby").hide("fast");
 	$("#main-window").show(1000);
+	sock.emit('playerUpdate', temp);
 
 });
 
 //post scoreboard and list of users
-sock.on('playerUpdate', onPlayerUpdate);
-function onPlayerUpdate(data) {
+sock.on('globalPlayers', k);
+function k(datas) {
 	var chat = document.getElementById('players');
-	var el = document.createElement('p');
-    el.className = "user";
-	el.innerHTML = data.name + ': ' + data.score;
-	chat.appendChild(el);
-    console.log(data);
+	$("#players").empty();
+    datas.forEach((data) => {
+    	var el = document.createElement('p');
+    	el.className = "user";
+		el.innerHTML = data["name"] + ': ' + data["score"];
+		chat.appendChild(el);
+});
+
 }
 
 // posts messages from users in the chat 
@@ -41,6 +44,8 @@ function onMessage(text) {
 	chat.appendChild(el);
     chat.scrollTop = chat.scrollHeight;
     console.log(text);
+
+    // sock.emit('guess');
 }
 
 // posts messages from the system in the chat

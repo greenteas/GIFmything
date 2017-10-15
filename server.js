@@ -25,7 +25,8 @@ function onConnection(sock) {
     // whenever the client sends a message, send txt to all clients
     sock.on('playerUpdate', function(data) {
     	playerData.push(data);
-    	console.log(playerData);
+    	// console.log(playerData);
+    	io.emit('globalPlayers', playerData);
     });
 
     sock.on('msg', (txt) => io.emit('msg', txt));

@@ -8,7 +8,8 @@ class Game {
         this._players = [sock1, sock2];
 
         this._initSockets();
-        this._countdown = 5;
+        this._countdown = 60;
+        this._gameEnd = false;
 
     }
 
@@ -29,6 +30,7 @@ class Game {
                 sock.emit('timer', self._countdown);
                 if (self._countdown == 0){
                     clearInterval(counting);
+                    self._gameEnd = true;
                 }
             });
 
@@ -45,12 +47,7 @@ class Game {
             }
         });
 
-        // sock.on('msg', this._checkWords);
     }
-
-    // _checkWords(words){
-    //     //might have to split the words if it's an entire phrase.
-    // }
 
     _turn(playerIndex) {
 
