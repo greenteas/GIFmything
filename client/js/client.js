@@ -31,3 +31,7 @@ form.addEventListener('submit', function(e) {
     sock.emit('msg', value);
     e.preventDefault();
 });
+
+$(function() {
+    $("#phrase").draggable({containment: "#tile"});
+});
