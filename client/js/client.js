@@ -6,6 +6,7 @@ function onMessage(text) {
 	var el = document.createElement('p');
 	el.innerHTML = text;
 	list.appendChild(el);
+    list.scrollTop = list.scrollHeight;
 }
 
 // onMessage('Hi');

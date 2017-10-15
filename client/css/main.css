@@ -1,0 +1,8 @@
+.chat-box {
+	min-height: 200px;
+}
+
+#chat-space {
+	height: 80%;
+	overflow-y: auto;
+}
