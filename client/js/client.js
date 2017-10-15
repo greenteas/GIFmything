@@ -3,13 +3,29 @@ sock.on('msg', onMessage);
 const BASE_URL = "http://api.giphy.com/v1/gifs/search?";
 const LIMIT = 15;
 const APIKEY = "dc6zaTOxFJmzC";
+sock.on('timer', changeTime);
+var username = document.getElementById('username').innerHTML;
 
+sock.on('msg', onMessage);
 function onMessage(text) {
-	var list = document.getElementById('chat-space');
+	var chat = document.getElementById('chat-space');
 	var el = document.createElement('p');
-	el.innerHTML = text;
-	list.appendChild(el);
-    list.scrollTop = list.scrollHeight;
+    el.className = "user-message";
+	el.innerHTML = username + ': ' + text;
+	chat.appendChild(el);
+    chat.scrollTop = chat.scrollHeight;
+    console.log(text);
+}
+
+sock.on('sysNotif', onNotification);
+function onNotification(text) {
+    var chat = document.getElementById('chat-space');
+    var el = document.createElement('p');
+    el.className = "system-notification";
+    el.innerHTML = text;
+    console.log(text);
+    chat.appendChild(el);
+    chat.scrollTop = chat.scrollHeight;
 }
 
 var form = document.getElementById('chat-form');
@@ -59,3 +75,9 @@ $(document).ready(function(){
 		});
 	});
 });
+
+function changeTime(text){
+	let c = document.getElementById("time");
+	c.innerHTML = text;
+}
+

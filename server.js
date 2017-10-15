@@ -12,6 +12,7 @@ let io = socketio(server);
 
 let waitingPlayer;
 
+
 // sock --> sending between client/server
 io.on('connection', onConnection);
 
@@ -19,7 +20,8 @@ app.use(express.static(__dirname+'/client'));
 server.listen(8080,() => console.log('Ready to work'));
 
 function onConnection(sock) {
-    sock.emit('msg', 'Hello! Get ready for a round of GIF My Thing!');
+    sock.emit('sysNotif', 'Hello! Get ready for a round of GIF My Thing!');
+
     // whenever the client sends a message, send txt to all clients
     sock.on('msg', (txt) => io.emit('msg', txt));
     if (waitingPlayer) {
@@ -28,7 +30,7 @@ function onConnection(sock) {
     }
     else {
         waitingPlayer = sock;
-        sock.emit('msg', 'You are waiting for a second player.');
+        sock.emit('sysNotif', 'You are waiting for a second player.');
     }
 }
 
