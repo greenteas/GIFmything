@@ -6,7 +6,7 @@ let fs = require('fs');
 class Game {
     constructor(sock1, sock2, playerData) {
         this._players = [sock1, sock2];
-
+        this._playerData = playerData;
         this._initSockets();
         this._countdown = 60;
         this._gameEnd = false;
@@ -58,10 +58,12 @@ class Game {
     _addTurnEvent(sock,phrase,self) {
         sock.on('guess', checkGuess);
 
-        function checkGuess(data){
+        function checkGuess(text){
             // var guessList = data.value.split(" ");
-            if (data.value.valueOf() == phrase.valueOf()){
+            if (text.value.valueOf() == phrase.valueOf()){
                 console.log("winner!!");
+                self._playerData["score"] += 1;
+                sock.emit("globalPlayers", self._playerData);
                 self._gameEnd = true;
 
             }

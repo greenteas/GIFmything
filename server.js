@@ -29,6 +29,14 @@ function onConnection(sock) {
     	io.emit('globalPlayers', playerData);
     });
 
+    sock.on("gameover", function(data) {
+        console.log("WON");
+        let temp = {};
+        temp.name = data.name;
+        temp.value = "guessed the phrase!";
+        io.emit("msg", temp);
+    });
+
     sock.on('msg', (txt) => io.emit('msg', txt));
     if (waitingPlayer) {
         new Game(waitingPlayer, sock, playerData);
