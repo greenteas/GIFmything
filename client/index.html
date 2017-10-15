@@ -12,13 +12,22 @@
         <div id="main-window">
             <div class='player-list'>
             </div>
+
             <div class='chat-box'>
+                <div id="chat-space"></div>
+                <form id="chat-form">
+                    <input type="text" id="chat-input">
+                    <button>Send</button>
+                </form>
             </div>
+            
             <div class="gif-space">
             </div>
             <div class="giphy-search">
             </div>
         </div>
 
+        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript" src="js/client.js"></script>
     </body>
 </html>
