@@ -16,6 +16,8 @@ class Game {
         var gifferTurn = 0;
         var self = this;
         var phrase = this._choosePhrase();
+        var phraseList = phrase.split(" ");
+        var phraseBlanks = this._getBlanks(phrase);
 
         var counting = setInterval(function() {  
             if (self._countdown > 0) { 
@@ -34,12 +36,20 @@ class Game {
 
         this._players.forEach((sock, index) => {
             if (index == gifferTurn) {
-                sock.emit('sysNotif', 'Phrase: ' + phrase);
+                sock.emit('sysNotif', phrase);
+                sock.emit('phraseChange', phrase);
             }
             else {
                 sock.emit('sysNotif', 'Guess that phrase!');
+                sock.emit('phraseChange', phraseBlanks.join(" "));
             }
         });
+
+        sock.on('msg', this._checkWords);
+    }
+
+    _checkWords(words){
+        //might have to split the words if it's an entire phrase.
     }
 
     _turn(playerIndex) {
@@ -53,6 +63,15 @@ class Game {
 
         // console.log(phrases)
         return phrases[rand];
+    }
+
+    _getBlanks(phrase){
+        var phraseAsList = phrase.split(" ");
+        var blanks = [];
+
+        phraseAsList.forEach((word) => {blanks.push("________");});
+
+        return blanks;
     }
 
 }

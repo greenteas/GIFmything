@@ -1,5 +1,5 @@
 var sock = io();
-sock.on('msg', onMessage);
+
 const BASE_URL = "http://api.giphy.com/v1/gifs/search?";
 const LIMIT = 15;
 const APIKEY = "dc6zaTOxFJmzC";
@@ -36,6 +36,12 @@ function onNotification(text) {
     console.log(text);
     chat.appendChild(el);
     chat.scrollTop = chat.scrollHeight;
+}
+
+sock.on('phraseChange', updatePhrase);
+function updatePhrase(text){
+	var phrase = $("#phrase-space");
+	phrase.text(text);
 }
 
 // takes text from the input textbox and put it in the chat
