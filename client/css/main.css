@@ -1,5 +1,5 @@
 .chat-box {
-	min-height: 200px;
+	min-height: 500px;
 }
 
 #chat-space {
@@ -13,12 +13,18 @@
 	cursor: move;
 }
 
+#canvas {
+	height: 60%;
+}
+
+=======
 #main-window {
 	display: none;
 }
 .scrolling-wrapper {
-  overflow-x: scroll;
-  white-space: nowrap;
+  	overflow-x: scroll;
+  	overflow-y: scroll;
+  	white-space: nowrap;
 }
 .scrolling-wrapper .gifResults {
 	margin-top:10px;
