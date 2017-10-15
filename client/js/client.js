@@ -29,3 +29,6 @@ function addTurnListener(id) {
 }
 
 // ['rock', 'paper', 'scissors'].forEach(addTurnListener);
+$(function() {
+    $("#phrase").draggable({containment: "#tile"});
+});
