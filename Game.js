@@ -1,5 +1,8 @@
 'use strict';
 
+let fs = require('fs');
+// console.log(phrases);
+
 class Game {
     constructor(sock1, sock2) {
         this._players = [sock1, sock2];
@@ -12,9 +15,10 @@ class Game {
     _initSockets() {
         var gifferTurn = 0;
         var self = this;
+        var phrase = this._choosePhrase();
 
         var counting = setInterval(function() {  
-            if (self._countdown > 0){ 
+            if (self._countdown > 0) { 
             self._countdown--;}
 
             console.log(self._countdown);
@@ -30,7 +34,7 @@ class Game {
 
         this._players.forEach((sock, index) => {
             if (index == gifferTurn) {
-                sock.emit('sysNotif', 'Phrase: insert random phrase here');
+                sock.emit('sysNotif', 'Phrase: ' + phrase);
             }
             else {
                 sock.emit('sysNotif', 'Guess that phrase!');
@@ -38,12 +42,17 @@ class Game {
         });
     }
 
-    _turn() {
+    _turn(playerIndex) {
 
     }
 
     _choosePhrase() {
+        var phrases = fs.readFileSync('client/phrases.txt').toString().split('\n');
+        var numPhrases = phrases.length;
+        var rand = Math.floor(Math.random() * numPhrases);
 
+        // console.log(phrases)
+        return phrases[rand];
     }
 
 }

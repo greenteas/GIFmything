@@ -14,6 +14,7 @@ $("#name-button").click(function(e) {
 	$("#main-window").show(1000);
 });
 
+// posts messages from users in the chat 
 sock.on('msg', onMessage);
 function onMessage(text) {
 	var chat = document.getElementById('chat-space');
@@ -25,6 +26,7 @@ function onMessage(text) {
     console.log(text);
 }
 
+// posts messages from the system in the chat
 sock.on('sysNotif', onNotification);
 function onNotification(text) {
     var chat = document.getElementById('chat-space');
@@ -36,6 +38,7 @@ function onNotification(text) {
     chat.scrollTop = chat.scrollHeight;
 }
 
+// takes text from the input textbox and put it in the chat
 var form = document.getElementById('chat-form');
 form.addEventListener('submit', function(e) {
     var input = document.getElementById('chat-input');
