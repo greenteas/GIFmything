@@ -21,7 +21,7 @@ class Game {
         var phraseBlanks = this._getBlanks(phrase);
 
         self._players.forEach((sock) => {
-           self. _addTurnEvent(sock, phrase,self);
+            self._addTurnEvent(sock, phrase, phraseBlanks, self);
         });
         
         var counting = setInterval(function() {  
@@ -39,7 +39,6 @@ class Game {
                     self._gameEnd = true;
                 }
             });
-
         }, 1000);
 
         this._players.forEach((sock, index) => {
@@ -55,19 +54,43 @@ class Game {
 
     }
 
-    _addTurnEvent(sock,phrase,self) {
+    _addTurnEvent(sock,phrase,answersSoFar,self) {
         sock.on('guess', checkGuess);
 
         function checkGuess(data){
-            // var guessList = data.value.split(" ");
-            if (data.value.valueOf() == phrase.valueOf()){
-                console.log("winner!!");
-                self._gameEnd = true;
+            var guessWords = data.value.split(' ');
+            var phraseWords = phrase.toLowerCase().split(' ');
 
+            var blankUpdate = answersSoFar;
+            for (var i = 0, answer; answer = phraseWords[i]; i++) {
+                if (blankUpdate[i] != "________") {
+                    continue;
+                }
+
+                var isCorrect = false;
+
+                for (var j = 0, word; word = guessWords[j]; j++) {
+                    if (answer == word) {
+                        blankUpdate[i] = answer;
+                        isCorrect = true;
+                        break;
+                    }
+                }
+            }
+            sock.emit('phraseChange', blankUpdate.join(" "));
+
+            var isEndGame = true;
+            for (var i = 0, word; word = blankUpdate[i]; i++) {
+                if (word == "________") {
+                    isEndGame = false;
+                    break;
+                }
             }
 
+            if (isEndGame) {
+                self._gameEnd = true;
+            }
         }
-
     }
 
     _choosePhrase() {
