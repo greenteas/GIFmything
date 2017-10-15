@@ -4,6 +4,7 @@ let http = require('http');
 let express = require('express');
 let socketio = require('socket.io');
 let Game = require('./Game');
+let giphy = require( 'giphy' )( 'dc6zaTOxFJmzC' );
 
 let app = express();
 let server = http.createServer(app);
@@ -23,7 +24,6 @@ function onConnection(sock) {
 
     // whenever the client sends a message, send txt to all clients
     sock.on('msg', (txt) => io.emit('msg', txt));
-
     if (waitingPlayer) {
         new Game(waitingPlayer, sock);
         waitingPlayer = null;
