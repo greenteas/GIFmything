@@ -2,28 +2,23 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>RPS Online</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>GIF My Thing!</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css">
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
-
-        <div class="wrapper">
-            <ul id="chat">
-            </ul>
-            <div class="row">
-                <button id="rock">Rock</button>
-                <button id="paper">Paper</button>
-                <button id="scissors">Scissors</button>
+        <div id="main-window">
+            <div class='player-list'>
             </div>
-            <div class="row">
-                <form id="chat-form">
-                    <input id="chat-input"/>
-                    <button>Send</button>
-                </form>
+            <div class='chat-box'>
+            </div>
+            <div class="gif-space">
+            </div>
+            <div class="giphy-search">
             </div>
         </div>
 
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="js/client.js"></script>
     </body>
 </html>
