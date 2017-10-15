@@ -1,4 +1,5 @@
 var sock = io();
+sock.on('msg', onMessage);
 const BASE_URL = "http://api.giphy.com/v1/gifs/search?";
 const LIMIT = 15;
 const APIKEY = "dc6zaTOxFJmzC";
@@ -59,6 +60,7 @@ function addTurnListener(id) {
 
 // When page loads, call jQuery functions
 $(document).ready(function(){
+	$('.gif-space').droppable();
 	$('#submit').on('click', function(){
 		$('#results').empty();
 		var userInput = $('#search-input').val().trim();
@@ -87,3 +89,4 @@ function changeTime(text){
 	let c = document.getElementById("time");
 	c.innerHTML = text;
 }
+
