@@ -81,7 +81,7 @@ $(document).ready(function(){
 				let gif = document.createElement('img');
 				gif.setAttribute('src', giphyURL);
 				gif.setAttribute('class', 'gifResults');
-				$('.gifResults').draggable();
+				$('.gifResults').selectable();
 				results.appendChild(gif);
 			});
 		});
