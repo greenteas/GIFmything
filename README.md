@@ -8,7 +8,7 @@ sudo npm upgrade npm -g
 ```
 2. Clone the repository.
 ```
-git clone https://github.com/ahalyasanjiv/Audiolla.git
+git clone https://github.com/greenteas/GIFmything.git
 ```
 
 3. Install dependencies.
